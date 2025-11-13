@@ -416,7 +416,7 @@ func (app *LicenseEncryptorApp) Run(args []string) error {
 	log.Printf("OWL DB Project Directory: %s", owlDbProjectDir)
 
 	// YAML 설정을 읽습니다
-	yamlPath := filepath.Join(owlDbProjectDir, "src", "main", "resources", "application-prod.yml")
+	yamlPath := filepath.Join(owlDbProjectDir, "src", "main", "resources", "application-cloud.yml")
 	log.Printf("Reading configuration from: %s", yamlPath)
 
 	err := app.service.configReader.ReadConfig(yamlPath)
