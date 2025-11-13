@@ -7,12 +7,13 @@ import (
 	"encoding/base64"
 	"encoding/xml"
 	"fmt"
-	"golang.org/x/net/html/charset"
 	"log"
 	"os"
 	"path/filepath"
 	"strings"
 	"time"
+
+	"golang.org/x/net/html/charset"
 
 	"gopkg.in/yaml.v3"
 )
@@ -288,10 +289,8 @@ func (fm *DefaultFileManager) ReadXMLFiles(dir string) ([]*LicenseFile, error) {
 }
 
 func (fm *DefaultFileManager) SaveEncryptedFile(content string, outputPath string) error {
-	// 이중 base64 인코딩 (원본 코드와 동일한 동작)
-	doubleEncoded := base64.StdEncoding.EncodeToString([]byte(content))
-
-	err := os.WriteFile(outputPath, []byte(doubleEncoded), 0644)
+	// Encrypt()에서 이미 base64 인코딩된 문자열을 받으므로 그대로 저장
+	err := os.WriteFile(outputPath, []byte(content), 0644)
 	if err != nil {
 		return fmt.Errorf("파일 저장 실패: %w", err)
 	}
